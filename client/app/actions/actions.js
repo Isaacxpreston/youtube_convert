@@ -1,5 +1,5 @@
-export function someAction () {
+export function convertVideo () {
 	return {
-		type: 'ACTION_TYPE'
+		type: 'CONVERT_VIDEO'
 	}
 }

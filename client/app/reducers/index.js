@@ -1,9 +1,9 @@
 import {routerReducer} from 'react-router-redux';
 import {combineReducers} from 'redux';
-import {simpleReducer} from './simpleReducer'
+import {videoSource} from './videoSource.js'
 
 const appReducer = combineReducers({
-  simpleReducer,
+  videoSource,
   routing: routerReducer
 })
 

@@ -25,7 +25,7 @@ const Main = React.createClass({
 
 function mapStatetoProps (state=[]) {
 	return {
-		simpleReducer: state.simpleReducer,
+		videoSource: state.videoSource,
 	}
 }
 

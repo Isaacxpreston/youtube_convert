@@ -1,4 +1,4 @@
-export function simpleReducer (state= null, action) {
+export function videoSource (state= null, action) {
   if(action.type === 'ACTION_TYPE') {
     return state
 	}

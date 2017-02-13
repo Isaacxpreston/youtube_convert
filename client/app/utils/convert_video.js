@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-export function convertVideo (url) {
+export function convertVideo (url, id) {
   return axios.post('/video/convert', {
     url,
-    id: "placeholder"
+    id
 	})
 	.then((resp) => {
 		console.log(resp.data)
