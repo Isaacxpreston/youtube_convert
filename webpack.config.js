@@ -22,12 +22,12 @@ var config = {
   module : {
     loaders : [
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         //include: path.join(__dirname, 'client/app'),
         loaders: [ 'style-loader', 'css-loader' ]
       },
       {
-        test: /\.(ttf|svg|eot|pdf)$/,
+        test: /\.(ttf|svg|eot|pdf|json)$/,
         loader: 'file-loader',
         options: {
           name: 'fonts/[hash].[ext]',

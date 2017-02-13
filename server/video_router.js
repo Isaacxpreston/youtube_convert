@@ -30,12 +30,7 @@ router.post('/convert', (req, res) => {
         cloudinary.uploader.upload_large('../videos/' + req.body.id + '.mp4', 
           function(result) {
             console.log("cloudinary response", result.public_id)
-
-            //todo - destroy upload after set amount of time (ie. 5 minutes after upload)
-            // cloudinary.uploader.destroy(result.public_id, function(result) {
-            //   console.log("destroyed upload", result)
-            // });
-            res.send(result.secure_url)
+            res.send(result.url)
           },
         { resource_type: "video" })
       })
