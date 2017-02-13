@@ -8,7 +8,8 @@ const VideoComponent = React.createClass({
     e.preventDefault()
     if (this.refs.id.value !== "") {
       convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
-        this.props.dispatch(CONVERT_VIDEO(path)) //change state to path props.videoSource
+        console.log("server res", path)
+        this.props.dispatch(CONVERT_VIDEO(path))
       })
     }
     this.refs.originalUrl.value = ""
@@ -16,6 +17,7 @@ const VideoComponent = React.createClass({
 	},
 
 	render() {
+    console.log(this.props.videoSource)
     return (
       <div>
         <p>convert from url</p>
@@ -26,7 +28,7 @@ const VideoComponent = React.createClass({
           <input type="text" ref="id"></input>
           <button>convert</button>
         </form>
-        <video src="https://res.cloudinary.com/demo/video/upload/v1427018743/ygzxwxmflekucvqcrb8c.mp4" controls>
+        <video src={this.props.videoSource} controls>
         </video>
       </div>
     )
