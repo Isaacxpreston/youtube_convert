@@ -6,7 +6,7 @@ export function convertVideo (url, id) {
     id
 	})
 	.then((resp) => {
-		console.log(resp.data)
+    return resp.data
   })
   .catch((error) => {
     console.log(error)

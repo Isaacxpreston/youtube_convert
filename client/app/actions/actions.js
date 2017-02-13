@@ -1,5 +1,6 @@
-export function convertVideo () {
+export function CONVERT_VIDEO (url) {
 	return {
-		type: 'CONVERT_VIDEO'
+		type: 'CONVERT_VIDEO',
+    payload: url
 	}
 }

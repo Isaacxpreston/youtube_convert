@@ -1,19 +1,24 @@
 import React from 'react'
 import {convertVideo} from '../utils/convert_video.js'
+import {CONVERT_VIDEO} from '../actions/actions.js'
+// let source = require('../../../videos/cool.mp4')
 
 const VideoComponent = React.createClass({
 
   convertVideo (e) {
     e.preventDefault()
     if (this.refs.id.value !== "") {
-      convertVideo(this.refs.originalUrl.value, this.refs.id.value)
+      convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
+        this.props.dispatch(CONVERT_VIDEO(path))
+        // console.log(path)
+        // source = require(path)
+      })
     }
     this.refs.originalUrl.value = ""
     this.refs.id.value = ""
 	},
 
 	render() {
-    console.log(this.props.videoSource)
     return (
       <div>
         <p>convert from url</p>
@@ -24,6 +29,8 @@ const VideoComponent = React.createClass({
           <input type="text" ref="id"></input>
           <button>convert</button>
         </form>
+        <video src={require(this.props.videoSource)} controls>
+        </video>
       </div>
     )
 	}

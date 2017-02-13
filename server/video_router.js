@@ -11,10 +11,10 @@ router.post('/convert', (req, res) => {
       console.log("error");
       res.send("error")
     })
-    .pipe(fs.createWriteStream('../videos/' + req.body.id + '.mp4')
+    .pipe(fs.createWriteStream('../client/app/components/' + req.body.id + '.mp4')
       .on('close', () =>{
         console.log("successfully converted")
-        res.send('../videos/' + req.body.id + '.mp4')
+        res.send('./' + req.body.id + '.mp4')
       })
     )
 })
