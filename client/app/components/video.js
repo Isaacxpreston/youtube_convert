@@ -1,7 +1,6 @@
 import React from 'react'
 import {convertVideo} from '../utils/convert_video.js'
 import {CONVERT_VIDEO} from '../actions/actions.js'
-// let source = require('../../../videos/cool.mp4')
 
 const VideoComponent = React.createClass({
 
@@ -9,9 +8,7 @@ const VideoComponent = React.createClass({
     e.preventDefault()
     if (this.refs.id.value !== "") {
       convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
-        this.props.dispatch(CONVERT_VIDEO(path))
-        // console.log(path)
-        // source = require(path)
+        this.props.dispatch(CONVERT_VIDEO(path)) //change state to path props.videoSource
       })
     }
     this.refs.originalUrl.value = ""
@@ -29,7 +26,7 @@ const VideoComponent = React.createClass({
           <input type="text" ref="id"></input>
           <button>convert</button>
         </form>
-        <video src={require(this.props.videoSource)} controls>
+        <video src="https://res.cloudinary.com/demo/video/upload/v1427018743/ygzxwxmflekucvqcrb8c.mp4" controls>
         </video>
       </div>
     )
