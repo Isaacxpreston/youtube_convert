@@ -6,7 +6,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const webpack = require('webpack');
+
 const passportRoute = require('./passport_router.js')
+const videoRoute = require('./video_router.js')
+
 const config = require('../webpack.config.js');
 
 // APP SETUP & MIDDLEWARE
@@ -28,6 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 app.use('/api', passportRoute)
+app.use('/video', videoRoute)
 
 app.get("*", (req, res) => (
   res.sendFile(path.resolve(__dirname, '../client/app', 'index.html'))
