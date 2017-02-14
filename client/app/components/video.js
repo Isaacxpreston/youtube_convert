@@ -20,6 +20,16 @@ const styles = {
     left: -1,
     height: "100%",
     width: "100%"
+  },
+  backgroundText: {
+    opacity: 0.25,
+    "position": "absolute",
+    "text-transform": "uppercase",
+    color: "darkred",
+    top: "50px",
+    left: "50px",
+    "font-size": "500px",
+    transform: "scaleY(1.5)"
   }
 }
 
@@ -46,6 +56,9 @@ const VideoComponent = React.createClass({
           <input type="text" placeholder="name" ref="id"></input>
           <button>convert</button>
         </form>
+        </div>
+        <div style={styles.backgroundText}>
+          test
         </div>
         <iframe style={styles.iframe} src={"http://localhost:4001/" + this.props.videoSource}></iframe>
       </div>

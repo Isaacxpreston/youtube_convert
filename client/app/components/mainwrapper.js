@@ -3,6 +3,19 @@ import {Link, browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {signUp} from '../actions/actions.js'
 
+//todo -
+//hamburger menu
+	//upload
+		//url
+		//text
+		//name
+	//recent
+		//list
+//create shareable/navigatable urls
+//overlay text
+//underlay text in 3d scene too
+//cool logo
+
 const styles = {
   div: {
     background: "navy",
