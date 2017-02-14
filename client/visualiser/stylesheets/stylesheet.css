@@ -1,0 +1,77 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+
+body {
+  background: black;
+  font: 10em Open Sans;
+  text-transform: uppercase;
+  overflow: hidden
+}
+
+
+#video {
+  opacity: 0;
+  display: none
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#svg-container {
+  z-index: -9999;
+  transform: scale(0.75, 1) translate(-340px, -240px);
+}
+
+.mask__shape {
+  fill: white;
+}
+
+.shape--fill {
+  fill: black;
+}
+
+.text--transparent {
+  fill: transparent;
+}
+
+.box-with-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.text-fill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-top: 35vw;
+  padding-left: 100%;
+  margin: auto;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}   
+
+.svg-video {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 40%;
+}
+
+.svg-inverted-mask {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 40%;
+}
