@@ -2,13 +2,21 @@
   <head>
     <title>visualiser</title>
     <style>
+      body {
+        background: black;
+        overflow: hidden
+      }
+      #video {
+        opacity: 0;
+        display: none
+      }
     </style>
   </head>
   <body>
     <video id="video">
     </video>
   </body>
-  
+
   <script src="/scripts/three/build/three.js"></script>
   <script src="/scripts/three/examples/js/shaders/ConvolutionShader.js"></script>
   <script src="/scripts/three/examples/js/shaders/CopyShader.js"></script>

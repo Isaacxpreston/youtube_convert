@@ -2,6 +2,30 @@ import React from 'react'
 import {convertVideo} from '../utils/convert_video.js'
 import {CONVERT_VIDEO} from '../actions/actions.js'
 
+const styles = {
+  div: {
+    display: "none",
+    opacity: 0
+  },
+  div2: {
+    position: "absolute",
+    "z-index": 2,
+    top: 0,
+    left: 0,
+    right: 0,
+    margin: "auto",
+    background: "red",
+    width: "100%"
+  },
+  iframe: {
+    border: "1px solid transparent",
+    position: "absolute",
+    left: 0,
+    height: "100%",
+    width: "100%"
+  }
+}
+
 const VideoComponent = React.createClass({
 
   convertVideo (e) {
@@ -19,6 +43,7 @@ const VideoComponent = React.createClass({
 	render() {
     return (
       <div>
+        <div style={styles.div}>
         <p>convert from url</p>
         <form onSubmit={this.convertVideo}>
           url
@@ -27,7 +52,8 @@ const VideoComponent = React.createClass({
           <input type="text" ref="id"></input>
           <button>convert</button>
         </form>
-        <iframe height={window.innerHeight} width={window.innerWidth} src={"http://localhost:4001/" + this.props.videoSource}></iframe>
+        </div>
+        <iframe style={styles.iframe} src={"http://localhost:4001/" + this.props.videoSource}></iframe>
       </div>
     )
 	}

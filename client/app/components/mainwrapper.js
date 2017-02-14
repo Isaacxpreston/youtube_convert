@@ -3,6 +3,15 @@ import {Link, browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {signUp} from '../actions/actions.js'
 
+const styles = {
+  div: {
+    background: "navy",
+		color: "white",
+		position: "absolute",
+		top: 300
+  },
+}
+
 const Main = React.createClass({
 
 	someAction () {
@@ -16,7 +25,9 @@ const Main = React.createClass({
 	render() {
 		return (
 			<div>
-				<h1>main</h1>
+				<div style={styles.div}>
+					main
+				</div>
 				{ React.cloneElement(this.props.children, this.props) }
 			</div>
 		)

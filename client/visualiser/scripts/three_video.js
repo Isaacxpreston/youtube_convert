@@ -1,4 +1,5 @@
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+var boost;
 var container;
 var camera, scene, renderer;
 var video, texture, material, mesh;
@@ -10,20 +11,20 @@ var windowHalfY = window.innerHeight / 2;
 var cube_count,
   meshes = [],
   materials = [],
-  xgrid = 32,
-  ygrid = 32;
+  xgrid = 26,
+  ygrid = 26;
 
 // init();
 // animate();
-
-
 
 function init() {
   container = document.createElement( 'div' );
   document.body.appendChild( container );
   camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
   camera.position.z = 500;
+  camera.position.x = 75;
   scene = new THREE.Scene();
+  scene.scale.set(1,1.5,1)
   var light = new THREE.DirectionalLight( 0xffffff );
   light.position.set( 0.5, 1, 1 ).normalize();
   scene.add( light );
@@ -54,9 +55,9 @@ function init() {
     change_uvs( geometry, ux, uy, ox, oy );
     materials[ cube_count ] = new THREE.MeshLambertMaterial( parameters );
     material = materials[ cube_count ];
-    material.hue = i/xgrid;
-    material.saturation = 1 - j/ygrid;
-    material.color.setHSL( material.hue, material.saturation, 0.5 );
+    // material.hue = i/xgrid;
+    // material.saturation = 1 - j/ygrid;
+    // material.color.setHSL( material.hue, material.saturation, 0.5 );
     mesh = new THREE.Mesh( geometry, material );
     mesh.position.x =   ( i - xgrid/2 ) * xsize;
     mesh.position.y =   ( j - ygrid/2 ) * ysize;
@@ -131,6 +132,12 @@ function render() {
       // child.scale.z = Math.random()
     }
   })
+
+  for (var i = 0; i < scene.children.length; i ++) {
+    if(scene.children[i].type !== "DirectionalLight") {
+      scene.children[i].scale.z = boost[i]/10 + 0.001
+    }
+  }
   // camera.position.x += ( mouseX - camera.position.x ) * 0.05;
   // camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
   camera.lookAt( scene.position );

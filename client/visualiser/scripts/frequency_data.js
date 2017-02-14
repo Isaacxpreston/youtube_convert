@@ -1,7 +1,7 @@
 initAudio = () => {
   let audio = document.getElementsByTagName("video")[0]
   // console.log(audio)
-  let boost;
+  // let boost;
   let analyser;
 
   //ANIMATION
