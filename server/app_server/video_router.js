@@ -18,6 +18,7 @@ router.post('/convert', (req, res) => {
   })
   .pipe(fs.createWriteStream('../../client/visualiser/videos/' + req.body.id + '.mp4')
     .on('close', () =>{
+      //todo - setTimeout and run del
       console.log("successfully converted: " + req.body.id + '.mp4')
       res.send(req.body.id)
     })

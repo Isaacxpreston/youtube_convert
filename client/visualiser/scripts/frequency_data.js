@@ -7,22 +7,21 @@ initAudio = () => {
   //ANIMATION
   let animate = function () {
     window.requestAnimationFrame(animate);
-    let fbcArray = new Uint8Array(analyser.frequencyBinCount); //audio frequency data to array
+    let fbcArray = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(fbcArray);
-    boost = fbcArray; // --> length = 1024
-    console.log(boost)
-    // --> new AudioContext() --> createAnalyser() --> getByteFrequencyData(frequency array)
+    boost = fbcArray; // length = 1024
+    document.getElementById("box1").innerHTML = boost[100]
+    document.getElementById("box2").innerHTML = boost[200]
   };
 
   //INIT
   let initMp3Player = function () {
     let context = new AudioContext();
-    analyser = context.createAnalyser(); // --> getByteFrequencyData
-    // Re-route audio playback into the processing graph of the AudioContext
+    analyser = context.createAnalyser();
     let source = context.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(context.destination);
-    animate(); //call animation
+    animate();
   };
 
   initMp3Player()

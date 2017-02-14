@@ -19,3 +19,5 @@ npm-debug.log
 
 api_keys.js
 /videos
+/client/visualiser/scripts/three
+/client/visualiser/videos
