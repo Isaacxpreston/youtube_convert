@@ -1,6 +1,6 @@
 initAudio = () => {
   let audio = document.getElementsByTagName("video")[0]
-  console.log(audio)
+  // console.log(audio)
   let boost;
   let analyser;
 
@@ -10,8 +10,6 @@ initAudio = () => {
     let fbcArray = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(fbcArray);
     boost = fbcArray; // length = 1024
-    document.getElementById("box1").innerHTML = boost[100]
-    document.getElementById("box2").innerHTML = boost[200]
   };
 
   //INIT
