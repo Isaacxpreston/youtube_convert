@@ -2,14 +2,15 @@ const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
 // APP SETUP & MIDDLEWARE
 const app = express();
-app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/../../videos'));
 
 app.get('/api/:tagId', function(req, res) {
-  res.send(req.params.tagId);
+  console.log(__dirname)
+  res.send('/' + req.params.tagId + '.mp4')
+  // res.sendFile(express.static(__dirname + '/../../videos/' + req.params.tagId + '.mp4'));
 });
 
 app.get("*", (req, res) => (
