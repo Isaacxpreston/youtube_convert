@@ -4,23 +4,20 @@ import {CONVERT_VIDEO} from '../actions/actions.js'
 
 const styles = {
   div: {
-    display: "none",
-    opacity: 0
-  },
-  div2: {
     position: "absolute",
-    "z-index": 2,
+    color: "white",
+    "zIndex": 2,
     top: 0,
     left: 0,
     right: 0,
-    margin: "auto",
-    background: "red",
     width: "100%"
   },
   iframe: {
     border: "1px solid transparent",
     position: "absolute",
-    left: 0,
+    "zIndex": -9999,
+    top: -1,
+    left: -1,
     height: "100%",
     width: "100%"
   }
@@ -44,12 +41,9 @@ const VideoComponent = React.createClass({
     return (
       <div>
         <div style={styles.div}>
-        <p>convert from url</p>
         <form onSubmit={this.convertVideo}>
-          url
-          <input type="text" ref="originalUrl"></input>
-          id
-          <input type="text" ref="id"></input>
+          <input type="text" placeholder="youtube url" ref="originalUrl"></input>
+          <input type="text" placeholder="name" ref="id"></input>
           <button>convert</button>
         </form>
         </div>

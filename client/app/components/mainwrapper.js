@@ -25,9 +25,6 @@ const Main = React.createClass({
 	render() {
 		return (
 			<div>
-				<div style={styles.div}>
-					main
-				</div>
 				{ React.cloneElement(this.props.children, this.props) }
 			</div>
 		)
