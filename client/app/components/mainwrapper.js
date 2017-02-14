@@ -9,12 +9,15 @@ import {signUp} from '../actions/actions.js'
 		//url
 		//text
 		//name
-	//recent
+	//recent --optional
 		//list
-//create shareable/navigatable urls
-//overlay text
-//underlay text in 3d scene too
+//create shareable/navigatable urls --optional
+//top left text
 //cool logo
+//landing page
+	//demo buttons
+		//sfw
+		//nsfw (bad words)
 
 const styles = {
   div: {
