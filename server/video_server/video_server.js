@@ -5,11 +5,10 @@ const cookieParser = require('cookie-parser');
 // APP SETUP & MIDDLEWARE
 const app = express();
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../../videos'));
+app.use(express.static(__dirname + '/../../client/visualiser'));
 
 app.get('/api/:tagId', function(req, res) {
-  console.log(__dirname)
-  res.send('/' + req.params.tagId + '.mp4')
+  res.send('/videos/' + req.params.tagId + '.mp4')
 });
 
 app.get("*", (req, res) => (

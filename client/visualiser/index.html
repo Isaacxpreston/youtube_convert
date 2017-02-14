@@ -3,23 +3,9 @@
     <title>visualiser</title>
   </head>
   <body>
-    <h2>visualiser page</h2>
-    <video
-      controls
-      height={window.innerHeight} 
-      width={window.innerWidth}
-      src=""
-    >
+    <video src="">
     </video>
   </body>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script>
-    axios.get('/api' + window.location.pathname)
-    .then(function (response) {
-      document.getElementsByTagName("video")[0].src = response.data
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  </script>
+  <script src="/scripts/display_from_url.js"></script>
 </html>
