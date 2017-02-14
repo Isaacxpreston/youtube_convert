@@ -25,7 +25,7 @@ const styles = {
     opacity: 0.25,
     "position": "absolute",
     "text-transform": "uppercase",
-    color: "darkred",
+    color: "black",
     top: "50px",
     left: "50px",
     "font-size": "500px",
@@ -53,12 +53,11 @@ const VideoComponent = React.createClass({
         <div style={styles.div}>
         <form onSubmit={this.convertVideo}>
           <input type="text" placeholder="youtube url" ref="originalUrl"></input>
+          <br />
           <input type="text" placeholder="name" ref="id"></input>
+          <br />
           <button>convert</button>
         </form>
-        </div>
-        <div style={styles.backgroundText}>
-          test
         </div>
         <iframe style={styles.iframe} src={"http://localhost:4001/" + this.props.videoSource}></iframe>
       </div>

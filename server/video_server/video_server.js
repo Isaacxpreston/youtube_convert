@@ -11,8 +11,8 @@ app.get('/api/:tagId', function(req, res) {
   res.send('/videos/' + req.params.tagId + '.mp4')
 });
 
-app.get("/3dtest", (req, res) => (
-  res.sendFile(path.resolve(__dirname, '../../client/visualiser', '3dtest.html'))
+app.get("/svg_path", (req, res) => (
+  res.sendFile(path.resolve(__dirname, '../../client/visualiser', 'svg_path.html'))
 ));
 
 app.get("*", (req, res) => (
