@@ -10,7 +10,6 @@ app.use(express.static(__dirname + '/../../videos'));
 app.get('/api/:tagId', function(req, res) {
   console.log(__dirname)
   res.send('/' + req.params.tagId + '.mp4')
-  // res.sendFile(express.static(__dirname + '/../../videos/' + req.params.tagId + '.mp4'));
 });
 
 app.get("*", (req, res) => (

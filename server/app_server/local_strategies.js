@@ -1,5 +1,5 @@
 const passport = require('passport');
-const User = require('../database/user_schema.js')
+const User = require('../../database/user_schema.js')
 const express = require('express');
 const LocalStrategy = require('passport-local').Strategy;
 

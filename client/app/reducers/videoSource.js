@@ -1,4 +1,4 @@
-export function videoSource (state= "http://res.cloudinary.com/isaacxpreston/video/upload/v1486982266/vzi2dvbfd8bxfwz2sggj.mp4", action) {
+export function videoSource (state= "test", action) {
   if(action.type === 'CONVERT_VIDEO') {
     return action.payload
 	}

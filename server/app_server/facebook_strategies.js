@@ -1,5 +1,5 @@
 const passport = require('passport');
-const User = require('../database/user_schema.js')
+const User = require('../../database/user_schema.js')
 const FacebookStrategy = require('passport-facebook').Strategy;
 
 passport.serializeUser((user, done) => {

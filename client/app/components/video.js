@@ -61,15 +61,7 @@ const VideoComponent = React.createClass({
           <input type="text" ref="id"></input>
           <button>convert</button>
         </form>
-        {/*<video
-          onClick={this.initAudio}
-          ref="audio"
-          controls
-          height={window.innerHeight} 
-          width={window.innerWidth}
-          src={this.props.videoSource}>
-        </video>*/}
-        <iframe src="http://localhost:4001/"></iframe>
+        <iframe src={"http://localhost:4001/" + this.props.videoSource}></iframe>
       </div>
     )
 	}

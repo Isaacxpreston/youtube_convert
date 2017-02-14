@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const passportRoute = require('./passport_router.js')
 const videoRoute = require('./video_router.js')
 
-const config = require('../webpack.config.js');
+const config = require('../../webpack.config.js');
 
 // APP SETUP & MIDDLEWARE
 const app = express();
@@ -34,7 +34,7 @@ app.use('/api', passportRoute)
 app.use('/video', videoRoute)
 
 app.get("*", (req, res) => (
-  res.sendFile(path.resolve(__dirname, '../client/app', 'index.html'))
+  res.sendFile(path.resolve(__dirname, '../../client/app', 'index.html'))
 ));
 
 const PORT = process.env.PORT || 4000
