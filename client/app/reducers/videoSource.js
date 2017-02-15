@@ -1,4 +1,4 @@
-export function videoSource (state= "fatima", action) {
+export function videoSource (state= "testing", action) {
   if(action.type === 'CONVERT_VIDEO') {
     return action.payload
 	}

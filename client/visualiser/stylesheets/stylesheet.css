@@ -2,11 +2,11 @@
 
 body {
   background: black;
-  font: 10em Open Sans;
+  font-family: Open Sans;
+  font-size: 20em;
   text-transform: uppercase;
   overflow: hidden
 }
-
 
 #video {
   opacity: 0;
@@ -22,7 +22,7 @@ body {
 
 #svg-container {
   z-index: -9999;
-  transform: scale(0.75, 1) translate(-340px, -240px);
+  transform: scale(1.5, 2) translate(-140px, -130px);
 }
 
 .mask__shape {

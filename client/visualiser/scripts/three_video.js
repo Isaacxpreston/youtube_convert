@@ -15,14 +15,12 @@ var cube_count,
   ygrid = 26;
 
 function init() {
-  // container = document.createElement( 'div' );
-  // document.body.appendChild( container );
   container = document.getElementById("container")
   camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
   camera.position.z = 500;
-  camera.position.x = 300;
+  camera.position.x = 800;
   scene = new THREE.Scene();
-  scene.scale.set(1.75,1,1)
+  scene.scale.set(3,1.5,1)
   var light = new THREE.DirectionalLight( 0xffffff );
   light.position.set( 0.5, 1, 1 ).normalize();
   scene.add( light );
@@ -35,7 +33,6 @@ function init() {
   texture.minFilter = THREE.LinearFilter;
   texture.magFilter = THREE.LinearFilter;
   texture.format = THREE.RGBFormat;
-  //
   var i, j, ux, uy, ox, oy,
     geometry,
     xsize, ysize;
@@ -66,8 +63,6 @@ function init() {
     meshes[ cube_count ] = mesh;
     cube_count += 1;
   }
-  
-
 
   //keep high res
   renderer.autoClear = false;

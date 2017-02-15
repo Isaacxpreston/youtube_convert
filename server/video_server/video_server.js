@@ -7,13 +7,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../../client/visualiser'));
 
-app.get('/api/:tagId', function(req, res) {
-  res.send('/videos/' + req.params.tagId + '.mp4')
+app.get('/api/file/:filename', function(req, res) {
+  res.send('/videos/' + req.params.filename + '.mp4')
 });
 
-app.get("/svg_path", (req, res) => (
-  res.sendFile(path.resolve(__dirname, '../../client/visualiser', 'svg_path.html'))
-));
 
 app.get("*", (req, res) => (
   res.sendFile(path.resolve(__dirname, '../../client/visualiser', 'index.html'))
