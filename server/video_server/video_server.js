@@ -6,12 +6,11 @@ const fs = require('fs');
 const ytdl = require('ytdl-core');
 
 var AWS      = require('aws-sdk');
-AWS.config.loadFromPath('config.json');
+AWS.config.loadFromPath('../../config.json');
     var zlib     = require('zlib');
-    s3Stream = require('s3-upload-stream')(new AWS.S3()),
+    s3Stream = require('s3-upload-stream')(new AWS.S3());
 // Set the client to be used for the upload. 
 // AWS.config.loadFromPath('config.json');
- AWS.config.update();
 // Create the streams 
 // var read = fs.createReadStream('/path/to/a/file');
 var compress = zlib.createGzip();
@@ -45,7 +44,8 @@ app.use(express.static(__dirname + '/../../client/visualiser'));
 app.get('/api/convert', function(req, res) {
   var upload = s3Stream.upload({
   "Bucket": "isaacxpreston",
-  "Key": "uploadme.mp4"
+  "Key": "doesitstillworknoworno.mp4",
+  "ACL": "public-read"
   });
   upload.maxPartSize(20971520); // 20 MB 
   upload.concurrentParts(5);
@@ -63,13 +63,14 @@ app.get('/api/convert', function(req, res) {
   })
   .pipe(upload);
   upload.on('error', function (error) {
-  console.log(error);
+  console.log("error", error);
 });
 upload.on('part', function (details) {
-  console.log(details);
+  console.log("details", details);
 });
 upload.on('uploaded', function (details) {
-  console.log(details);
+  console.log("uploaded!", details.Location);
+  res.send(details.Location)
 });
   // .pipe(fs.createWriteStream('/videos/live.mp4')
   //   .on('close', () =>{
@@ -78,20 +79,6 @@ upload.on('uploaded', function (details) {
   //     res.send(req.body.id)
   //   })
   // )
-
-  // todo - implement
-  // .pipe(uploadFromStream(s3));
-
-  // function uploadFromStream(s3) {
-  //   var pass = new stream.PassThrough();
-
-  //   var params = {Bucket: BUCKET, Key: KEY, Body: pass};
-  //   s3.upload(params, function(err, data) {
-  //     console.log(err, data);
-  //   });
-
-  //   return pass;
-  // }
 });
 
 app.get('/api/file/:filename', function(req, res) {
@@ -117,7 +104,7 @@ app.get('/api/file/:filename', function(req, res) {
   // });
 
   // res.send('/videos/' + req.params.filename + '.mp4')
-  res.send("https://s3-us-west-1.amazonaws.com/isaacxpreston/testing.mp4")
+  res.send("https://isaacxpreston.s3-us-west-1.amazonaws.com/doesitstillworknoworno.mp4")
 });
 
 app.post('/api/convert', (req, res) => {
