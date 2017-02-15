@@ -1,5 +1,5 @@
 import React from 'react'
-import {convertVideo} from '../utils/convert_video.js'
+import {convertVideo, postToHeroku} from '../utils/convert_video.js'
 import {CONVERT_VIDEO} from '../actions/actions.js'
 
 const styles = {
@@ -27,14 +27,17 @@ const VideoComponent = React.createClass({
 
   convertVideo (e) {
     e.preventDefault()
-    if (this.refs.id.value !== "") {
-      convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
-        console.log("server res", path)
-        this.props.dispatch(CONVERT_VIDEO(path))
-      })
-    }
-    this.refs.originalUrl.value = ""
-    this.refs.id.value = ""
+    postToHeroku().then((res) => {
+      console.log("from video component", res)
+    })
+    // if (this.refs.id.value !== "") {
+    //   convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
+    //     console.log("server res", path)
+    //     this.props.dispatch(CONVERT_VIDEO(path))
+    //   })
+    // }
+    // this.refs.originalUrl.value = ""
+    // this.refs.id.value = ""
 	},
 
 	render() {
