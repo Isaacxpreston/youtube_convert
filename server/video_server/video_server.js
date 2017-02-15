@@ -24,6 +24,7 @@ app.get('/api/convert', function(req, res) {
       quality: 18
     }
   )
+  console.log("yo")
   res.send("OK!")
   // .on('error', (err) => {
   //   console.log("error", err);
@@ -44,7 +45,8 @@ app.get('/api/convert', function(req, res) {
 });
 
 app.get('/api/file/:filename', function(req, res) {
-  res.send('/videos/' + req.params.filename + '.mp4')
+  // res.send('/videos/' + req.params.filename + '.mp4')
+  res.send("https://s3-us-west-1.amazonaws.com/isaacxpreston/testing.mp4")
 });
 
 app.post('/api/convert', (req, res) => {

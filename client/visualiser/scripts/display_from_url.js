@@ -19,6 +19,8 @@ axios.get('/api/file' + window.location.pathname)
 .then(function (response) {
   document.getElementsByTagName("video")[0].src = response.data
   document.getElementsByTagName("video")[1].src = response.data
+  document.getElementsByTagName("video")[0].setAttribute('crossorigin', 'anonymous');
+  document.getElementsByTagName("video")[1].setAttribute('crossorigin', 'anonymous');
   initAudio()
   init()
   animate()
