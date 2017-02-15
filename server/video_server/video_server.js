@@ -4,9 +4,46 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-var s3 = require('s3');
 
-// APP SETUP & MIDDLEWARE
+var AWS      = require('aws-sdk');
+AWS.config.loadFromPath('config.json');
+    var zlib     = require('zlib');
+    s3Stream = require('s3-upload-stream')(new AWS.S3()),
+// Set the client to be used for the upload. 
+// AWS.config.loadFromPath('config.json');
+ AWS.config.update({ "accessKeyId": "AKIAIPHGWAUV5F5J4AIA", "secretAccessKey": "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", "region": "us-west-1" });
+// Create the streams 
+// var read = fs.createReadStream('/path/to/a/file');
+var compress = zlib.createGzip();
+var upload = s3Stream.upload({
+  "Bucket": "isaacxpreston",
+  "Key": "uploadme.mp4"
+});
+upload.maxPartSize(20971520); // 20 MB 
+upload.concurrentParts(5);
+upload.on('error', function (error) {
+  console.log(error);
+});
+upload.on('part', function (details) {
+  console.log(details);
+});
+upload.on('uploaded', function (details) {
+  console.log(details);
+});
+
+// const s3 = require('s3');
+// const client = s3.createClient({
+//   maxAsyncS3: 20,
+//   s3RetryCount: 3,
+//   s3RetryDelay: 1000,
+//   multipartUploadThreshold: 20971520,
+//   multipartUploadSize: 15728640,
+//   s3Options: {
+//     accessKeyId: "AKIAIPHGWAUV5F5J4AIA",
+//     secretAccessKey: "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",
+//     region: "us-west-1",
+//   },
+// });
 const app = express();
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
@@ -30,13 +67,14 @@ app.get('/api/convert', function(req, res) {
     console.log("error", err);
     res.send(err)
   })
-  .pipe(fs.createWriteStream('/videos/live.mp4')
-    .on('close', () =>{
-      //todo - setTimeout and run del
-      console.log("successfully converted live.mp4")
-      res.send(req.body.id)
-    })
-  )
+  .pipe(upload);
+  // .pipe(fs.createWriteStream('/videos/live.mp4')
+  //   .on('close', () =>{
+  //     //todo - setTimeout and run del
+  //     console.log("successfully converted live.mp4")
+  //     res.send(req.body.id)
+  //   })
+  // )
 
   // todo - implement
   // .pipe(uploadFromStream(s3));
@@ -54,44 +92,27 @@ app.get('/api/convert', function(req, res) {
 });
 
 app.get('/api/file/:filename', function(req, res) {
-  var client = s3.createClient({
-  maxAsyncS3: 20,     // this is the default
-  s3RetryCount: 3,    // this is the default
-  s3RetryDelay: 1000, // this is the default
-  multipartUploadThreshold: 20971520, // this is the default (20 MB)
-  multipartUploadSize: 15728640, // this is the default (15 MB)
-  s3Options: {
-    accessKeyId: "AKIAIPHGWAUV5F5J4AIA",
-    secretAccessKey: "5Bx1WvpIDdRUYAnxlpvZz/1KrUSJmvHxZ/Uy9CQJ",
-    region: "us-west-1",
-    // endpoint: 's3.yourdomain.com',
-    // sslEnabled: false
-    // any other options are passed to new AWS.S3()
-    // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
-  },
-});
 
-  var params = {
-    localFile: '../../client/visualiser/videos/example.txt',
+  // var params = {
+  //   localFile: '../../client/visualiser/videos/example.txt',
 
-    s3Params: {
-      Bucket: "isaacxpreston",
-      Key: "AKIAIPHGWAUV5F5J4AIA",
-      // other options supported by putObject, except Body and ContentLength.
-      // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property
-    },
-  };
-  var uploader = client.uploadFile(params);
-  uploader.on('error', function(err) {
-    console.error("unable to upload:", err.stack);
-  });
-  uploader.on('progress', function() {
-    console.log("progress", uploader.progressMd5Amount,
-              uploader.progressAmount, uploader.progressTotal);
-  });
-  uploader.on('end', function() {
-    console.log("done uploading");
-  });
+  //   s3Params: {
+  //     Bucket: "isaacxpreston",
+  //     Key: "name of file here",
+  //   },
+  // };
+  // var uploader = client.uploadFile(params);
+  // uploader.on('error', function(err) {
+  //   console.error("unable to upload:", err.stack);
+  // });
+  // uploader.on('progress', function() {
+  //   console.log("progress", uploader.progressMd5Amount,
+  //             uploader.progressAmount, uploader.progressTotal);
+  // });
+  // uploader.on('end', function() {
+  //   console.log("done uploading");
+  // });
+
   // res.send('/videos/' + req.params.filename + '.mp4')
   res.send("https://s3-us-west-1.amazonaws.com/isaacxpreston/testing.mp4")
 });
