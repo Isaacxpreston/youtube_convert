@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "node server/server.js",
     "build": "webpack -p",
-    "postinstall": "webpack -p",
     "start": "node server/video_server/video_server.js"
   },
   "author": "",
