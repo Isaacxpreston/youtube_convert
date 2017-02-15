@@ -6,13 +6,13 @@ const fs = require('fs');
 const ytdl = require('ytdl-core');
 // APP SETUP & MIDDLEWARE
 const app = express();
+app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../../client/visualiser'));
 
 
@@ -21,25 +21,26 @@ app.get('/api/file/:filename', function(req, res) {
 });
 
 app.post('/api/convert', (req, res) => {
-  ytdl(req.body.url ,
-    { 
-      filter: (format) => { 
-        return format.container === 'mp4';
-      },
-      quality: 18
-    }
-  )
-  .on('error', (err) => {
-    console.log("error", err);
-    res.send("error")
-  })
-  .pipe(fs.createWriteStream('/videos/' + req.body.id + '.mp4')
-    .on('close', () =>{
-      //todo - setTimeout and run del
-      console.log("successfully converted: " + req.body.id + '.mp4')
-      res.send(req.body.id)
-    })
-  )
+  // ytdl(req.body.url ,
+  //   { 
+  //     filter: (format) => { 
+  //       return format.container === 'mp4';
+  //     },
+  //     quality: 18
+  //   }
+  // )
+  // .on('error', (err) => {
+  //   console.log("error", err);
+  //   res.send("error")
+  // })
+  // .pipe(fs.createWriteStream('/videos/' + req.body.id + '.mp4')
+  //   .on('close', () =>{
+  //     //todo - setTimeout and run del
+  //     console.log("successfully converted: " + req.body.id + '.mp4')
+  //     res.send(req.body.id)
+  //   })
+  // )
+  res.send("live!")
 })
 
 app.get("*", (req, res) => (
