@@ -1,5 +1,5 @@
 import React from 'react'
-import {convertVideo, postToHeroku} from '../utils/convert_video.js'
+import {convertVideo} from '../utils/convert_video.js'
 import {CONVERT_VIDEO} from '../actions/actions.js'
 
 const styles = {
