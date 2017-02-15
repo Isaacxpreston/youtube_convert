@@ -15,6 +15,27 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(__dirname + '/../../client/visualiser'));
 
+app.get('/api/convert', function(req, res) {
+  ytdl('https://www.youtube.com/watch?v=mWISiHcGoNg' ,
+    { 
+      filter: (format) => { 
+        return format.container === 'mp4';
+      },
+      quality: 18
+    }
+  )
+  .on('error', (err) => {
+    console.log("error", err);
+    res.send(err)
+  })
+  .pipe(fs.createWriteStream('/videos/live.mp4')
+    .on('close', () =>{
+      //todo - setTimeout and run del
+      console.log("successfully converted live.mp4")
+      res.send(req.body.id)
+    })
+  )
+});
 
 app.get('/api/file/:filename', function(req, res) {
   res.send('/videos/' + req.params.filename + '.mp4')
