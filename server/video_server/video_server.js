@@ -11,25 +11,25 @@ AWS.config.loadFromPath('config.json');
     s3Stream = require('s3-upload-stream')(new AWS.S3()),
 // Set the client to be used for the upload. 
 // AWS.config.loadFromPath('config.json');
- AWS.config.update({ "accessKeyId": "AKIAIPHGWAUV5F5J4AIA", "secretAccessKey": "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", "region": "us-west-1" });
+ AWS.config.update();
 // Create the streams 
 // var read = fs.createReadStream('/path/to/a/file');
 var compress = zlib.createGzip();
-var upload = s3Stream.upload({
-  "Bucket": "isaacxpreston",
-  "Key": "uploadme.mp4"
-});
-upload.maxPartSize(20971520); // 20 MB 
-upload.concurrentParts(5);
-upload.on('error', function (error) {
-  console.log(error);
-});
-upload.on('part', function (details) {
-  console.log(details);
-});
-upload.on('uploaded', function (details) {
-  console.log(details);
-});
+// var upload = s3Stream.upload({
+//   "Bucket": "isaacxpreston",
+//   "Key": "uploadme.mp4"
+// });
+// upload.maxPartSize(20971520); // 20 MB 
+// upload.concurrentParts(5);
+// upload.on('error', function (error) {
+//   console.log(error);
+// });
+// upload.on('part', function (details) {
+//   console.log(details);
+// });
+// upload.on('uploaded', function (details) {
+//   console.log(details);
+// });
 
 // const s3 = require('s3');
 // const client = s3.createClient({
@@ -55,6 +55,12 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/../../client/visualiser'));
 
 app.get('/api/convert', function(req, res) {
+  var upload = s3Stream.upload({
+  "Bucket": "isaacxpreston",
+  "Key": "uploadme.mp4"
+  });
+  upload.maxPartSize(20971520); // 20 MB 
+  upload.concurrentParts(5);
   ytdl('https://www.youtube.com/watch?v=mWISiHcGoNg' ,
     { 
       filter: (format) => { 
@@ -68,6 +74,15 @@ app.get('/api/convert', function(req, res) {
     res.send(err)
   })
   .pipe(upload);
+  upload.on('error', function (error) {
+  console.log(error);
+});
+upload.on('part', function (details) {
+  console.log(details);
+});
+upload.on('uploaded', function (details) {
+  console.log(details);
+});
   // .pipe(fs.createWriteStream('/videos/live.mp4')
   //   .on('close', () =>{
   //     //todo - setTimeout and run del
