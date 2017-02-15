@@ -28,13 +28,18 @@ app.get('/api/convert', function(req, res) {
     console.log("error", err);
     res.send(err)
   })
-  .pipe(fs.createWriteStream('/videos/live.mp4')
-    .on('close', () =>{
-      //todo - setTimeout and run del
-      console.log("successfully converted live.mp4")
-      res.send(req.body.id)
-    })
-  )
+  .on('close', () =>{
+    //todo - setTimeout and run del
+    console.log("successfully converted live.mp4")
+    res.send(req.body.id)
+  })
+  // .pipe(fs.createWriteStream('/videos/live.mp4')
+  //   .on('close', () =>{
+  //     //todo - setTimeout and run del
+  //     console.log("successfully converted live.mp4")
+  //     res.send(req.body.id)
+  //   })
+  // )
 });
 
 app.get('/api/file/:filename', function(req, res) {
