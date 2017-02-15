@@ -66,7 +66,6 @@ function init() {
 
   //keep high res
   renderer.autoClear = false;
-
   document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   // postprocessing
   var renderModel = new THREE.RenderPass( scene, camera );

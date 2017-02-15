@@ -14,15 +14,3 @@ export function convertVideo (url, id) {
     console.log(error)
   })
 }
-
-// export function postToHeroku () {
-//   return axios.post('https://youtube-converter.herokuapp.com/api/convert', {
-//     dummyData: "dummy text"
-// 	})
-// 	.then((resp) => {
-//     console.log("api response", resp)
-//   })
-//   .catch((error) => {
-//     console.log(error)
-//   })
-// }

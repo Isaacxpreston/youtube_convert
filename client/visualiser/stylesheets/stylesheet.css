@@ -8,6 +8,16 @@ body {
   overflow: hidden
 }
 
+#listener {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: lime;
+  height: 500px;
+  width: 500px;
+  z-index: 100;
+}
+
 #video {
   opacity: 0;
   display: none

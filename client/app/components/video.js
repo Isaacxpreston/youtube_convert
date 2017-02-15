@@ -25,6 +25,11 @@ const styles = {
 
 const VideoComponent = React.createClass({
 
+  getInner () {
+    console.log("called")
+    console.log(document.getElementsByTagName('iframe')[0].contentDocument)
+  },
+
   convertVideo (e) {
     e.preventDefault()
     if (this.refs.id.value !== "") {
@@ -39,7 +44,7 @@ const VideoComponent = React.createClass({
 
 	render() {
     return (
-      <div>
+      <div onClick={this.getInner}>
         <div style={styles.div}>
         <form onSubmit={this.convertVideo}>
           <input type="text" placeholder="youtube url" ref="originalUrl"></input>

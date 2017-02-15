@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/../../client/visualiser'));
 
 app.post('/api/convert', function(req, res) {
+  console.log("converting")
   var upload = s3Stream.upload({
   "Bucket": "isaacxpreston",
   "Key": req.body.id + ".mp4",
