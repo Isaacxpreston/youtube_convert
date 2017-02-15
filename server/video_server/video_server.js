@@ -21,26 +21,26 @@ app.get('/api/file/:filename', function(req, res) {
 });
 
 app.post('/api/convert', (req, res) => {
-  // ytdl(req.body.url ,
-  //   { 
-  //     filter: (format) => { 
-  //       return format.container === 'mp4';
-  //     },
-  //     quality: 18
-  //   }
-  // )
-  // .on('error', (err) => {
-  //   console.log("error", err);
-  //   res.send("error")
-  // })
-  // .pipe(fs.createWriteStream('/videos/' + req.body.id + '.mp4')
-  //   .on('close', () =>{
-  //     //todo - setTimeout and run del
-  //     console.log("successfully converted: " + req.body.id + '.mp4')
-  //     res.send(req.body.id)
-  //   })
-  // )
-  res.send(req.body.url)
+  ytdl(req.body.url ,
+    { 
+      filter: (format) => { 
+        return format.container === 'mp4';
+      },
+      quality: 18
+    }
+  )
+  .on('error', (err) => {
+    console.log("error", err);
+    res.send("error")
+  })
+  .pipe(fs.createWriteStream('/videos/' + req.body.id + '.mp4')
+    .on('close', () =>{
+      //todo - setTimeout and run del
+      console.log("successfully converted: " + req.body.id + '.mp4')
+      res.send(req.body.id)
+    })
+  )
+  // res.send(req.body.url)
 })
 
 app.get("*", (req, res) => (
