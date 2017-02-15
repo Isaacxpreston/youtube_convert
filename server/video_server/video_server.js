@@ -24,15 +24,16 @@ app.get('/api/convert', function(req, res) {
       quality: 18
     }
   )
-  .on('error', (err) => {
-    console.log("error", err);
-    res.send(err)
-  })
-  .on('close', () =>{
-    //todo - setTimeout and run del
-    console.log("successfully converted live.mp4")
-    res.send(req.body.id)
-  })
+  res.send("OK!")
+  // .on('error', (err) => {
+  //   console.log("error", err);
+  //   res.send(err)
+  // })
+  // .on('close', () =>{
+  //   //todo - setTimeout and run del
+  //   console.log("successfully converted live.mp4")
+  //   res.send(req.body.id)
+  // })
   // .pipe(fs.createWriteStream('/videos/live.mp4')
   //   .on('close', () =>{
   //     //todo - setTimeout and run del
