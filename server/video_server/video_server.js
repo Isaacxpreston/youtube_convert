@@ -40,7 +40,7 @@ app.post('/api/convert', (req, res) => {
   //     res.send(req.body.id)
   //   })
   // )
-  res.send("live!")
+  res.send("live!", req.body.url)
 })
 
 app.get("*", (req, res) => (
