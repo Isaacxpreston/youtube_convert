@@ -11,8 +11,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-app.use(express.static(__dirname + '/../../client/visualiser'));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/../../client/visualiser'));
+
 
 app.get('/api/file/:filename', function(req, res) {
   res.send('/videos/' + req.params.filename + '.mp4')
