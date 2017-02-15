@@ -13,6 +13,16 @@ body {
   display: none
 }
 
+#background-video {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.25;
+  z-index: -2
+}
+
 #container {
   position: absolute;
   top: 0;
@@ -21,7 +31,7 @@ body {
 }
 
 #svg-container {
-  z-index: -9999;
+  z-index: -1;
   transform: scale(1.5, 2) translate(-140px, -130px);
 }
 

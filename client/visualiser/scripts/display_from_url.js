@@ -13,7 +13,6 @@ const sizes = {
 
 let textLength = window.location.pathname.slice(1).length
 document.body.style.fontSize = sizes[textLength]
-console.log(window.location.pathname.slice(1))
 document.getElementsByTagName("text")[0].innerHTML = window.location.pathname.slice(1)
 
 axios.get('/api/file' + window.location.pathname)

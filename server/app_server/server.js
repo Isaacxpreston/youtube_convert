@@ -20,7 +20,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 app.use(require('webpack-hot-middleware')(compiler));
-mongoose.connect('mongodb://localhost/auth_boilerplate2');
+// mongoose.connect('mongodb://localhost/auth_boilerplate2');
 app.use(cookieParser());
 app.use(session({
   secret: 'secret',
