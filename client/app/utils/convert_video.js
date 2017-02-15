@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export function convertVideo (url, id) {
-  return axios.post('/video/convert', {
+  return axios.post('https://youtube-converter.herokuapp.com/api/convert', {
     url,
     id
 	})
@@ -14,7 +14,7 @@ export function convertVideo (url, id) {
 }
 
 export function postToHeroku () {
-  return axios.post('https://youtube-converter.herokuapp.com/api/test', {
+  return axios.post('https://youtube-converter.herokuapp.com/api/convert', {
     dummyData: "dummy text"
 	})
 	.then((resp) => {

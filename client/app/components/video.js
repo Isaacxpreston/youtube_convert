@@ -27,17 +27,14 @@ const VideoComponent = React.createClass({
 
   convertVideo (e) {
     e.preventDefault()
-    postToHeroku().then((res) => {
-      console.log("from video component", res)
-    })
-    // if (this.refs.id.value !== "") {
-    //   convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
-    //     console.log("server res", path)
-    //     this.props.dispatch(CONVERT_VIDEO(path))
-    //   })
-    // }
-    // this.refs.originalUrl.value = ""
-    // this.refs.id.value = ""
+    if (this.refs.id.value !== "") {
+      convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
+        console.log("server res", path)
+        this.props.dispatch(CONVERT_VIDEO(path))
+      })
+    }
+    this.refs.originalUrl.value = ""
+    this.refs.id.value = ""
 	},
 
 	render() {
