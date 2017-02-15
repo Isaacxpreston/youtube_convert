@@ -11,13 +11,7 @@ app.get('/api/file/:filename', function(req, res) {
   res.send('/videos/' + req.params.filename + '.mp4')
 });
 
-app.get("/clip", (req, res) => (
-  res.sendFile(path.resolve(__dirname, '../../client/visualiser', 'svg-clip-test.html'))
-));
-
-
-
-app.get("*", (req, res) => (
+app.get("/", (req, res) => (
   res.sendFile(path.resolve(__dirname, '../../client/visualiser', 'index.html'))
 ));
 
