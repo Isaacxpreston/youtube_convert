@@ -1,15 +1,8 @@
 const express = require('express');
 const path = require('path')
-const session = require('express-session');
-// const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const passport = require('passport');
 const webpack = require('webpack');
-
-// const passportRoute = require('./passport_router.js')
 const videoRoute = require('./video_router.js')
-
 const config = require('../../webpack.config.js');
 
 // APP SETUP & MIDDLEWARE
@@ -20,17 +13,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 app.use(require('webpack-hot-middleware')(compiler));
-// mongoose.connect('mongodb://localhost/auth_boilerplate2');
-app.use(cookieParser());
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(bodyParser.json());
-// app.use('/api', passportRoute)
 app.use('/video', videoRoute)
 
 app.get("*", (req, res) => (

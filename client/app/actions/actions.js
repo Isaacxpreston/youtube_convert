@@ -4,3 +4,10 @@ export function CONVERT_VIDEO (url) {
     payload: url
 	}
 }
+
+export function UPDATE_PERCENT (str) {
+	return {
+		type: 'UPDATE_PERCENT',
+    payload: str
+	}
+}

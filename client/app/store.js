@@ -5,7 +5,6 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 import reducer from './reducers/index.js'
-import {Promise} from 'bluebird'
 
 const enhancers = compose(
 	applyMiddleware(thunk),

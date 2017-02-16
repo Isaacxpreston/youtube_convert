@@ -1,17 +1,6 @@
 import React from 'react'
-// import {convertVideo} from '../utils/convert_video.js'
-// import {CONVERT_VIDEO} from '../actions/actions.js'
 
 const styles = {
-  // div: {
-  //   position: "absolute",
-  //   "zIndex": 2, 
-  //   top: 0,
-  //   left: 0,
-  //   right: 0,
-  //   width: "400px",
-  //   height: "300px"
-  // },
   iframe: {
     border: "1px solid transparent",
     position: "absolute",
@@ -24,19 +13,7 @@ const styles = {
 }
 
 const VideoComponent = React.createClass({
-  // convertVideo (e) {
-  //   e.preventDefault()
-  //   if (this.refs.id.value !== "") {
-  //     convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
-  //       console.log("server res", path)
-  //       this.props.dispatch(CONVERT_VIDEO(path))
-  //     })
-  //   }
-  //   this.refs.originalUrl.value = ""
-  //   this.refs.id.value = ""
-	// },
-
-	render() {
+	render () {
     return (
       <div>
         <iframe style={styles.iframe} src={"http://localhost:4001/" + this.props.videoSource}></iframe>
