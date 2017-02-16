@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router()
 const ytdl = require('ytdl-core');
 const AWS = require('aws-sdk');
-AWS.config.loadFromPath('../../config.json');
+// AWS.config.loadFromPath('../../config.json');
 const zlib = require('zlib');
 s3Stream = require('s3-upload-stream')(new AWS.S3());
 const compress = zlib.createGzip();
