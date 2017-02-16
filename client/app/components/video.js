@@ -13,10 +13,12 @@ const styles = {
 }
 
 const VideoComponent = React.createClass({
+  //production
+  //https://youtube-converter.herokuapp.com/
 	render () {
     return (
       <div>
-        <iframe style={styles.iframe} src={"http://localhost:4001/" + this.props.videoSource}></iframe>
+        <iframe style={styles.iframe} src={"https://youtube-converter.herokuapp.com/" + this.props.videoSource}></iframe>
       </div>
     )
 	}
