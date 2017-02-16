@@ -8,16 +8,6 @@ body {
   overflow: hidden
 }
 
-#listener {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: lime;
-  height: 500px;
-  width: 500px;
-  z-index: 100;
-}
-
 #video {
   opacity: 0;
   display: none
@@ -80,7 +70,7 @@ body {
   position: absolute;
   right: 0;
   left: 0;
-  top: 0;
+  top: -25;
   bottom: 0;
   margin: auto;
   width: 40%;

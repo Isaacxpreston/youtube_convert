@@ -48,7 +48,7 @@ const styles = {
 const UploadForm = React.createClass({
   convertVideo (e) {
     e.preventDefault()
-    if (this.refs.id.value !== "" && this.refs.originalUrl.value !== "") {
+    if (this.refs.id.value.toUpperCase() !== "CONVERTER" && this.refs.id.value !== "" && this.refs.originalUrl.value !== "") {
       convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
         this.props.dispatch(CONVERT_VIDEO(path))
       })
