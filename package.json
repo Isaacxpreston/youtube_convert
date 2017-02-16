@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node server/server.js",
     "build": "webpack -p",
-    "start": "node server/video_server/video_server.js"
+    "postinstall": "webpack -p",
+    "start": "node server/app_server/server.js"
   },
   "author": "",
   "license": "ISC",
