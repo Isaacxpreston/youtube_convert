@@ -2,6 +2,8 @@ import React from 'react'
 import {Link, browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {signUp} from '../actions/actions.js'
+import VideoComponent from './video.js'
+import UploadForm from './upload_form.js'
 
 //todo -
 //hamburger menu
@@ -41,7 +43,8 @@ const Main = React.createClass({
 	render() {
 		return (
 			<div>
-				{ React.cloneElement(this.props.children, this.props) }
+				<UploadForm {...this.props} />
+				<VideoComponent {...this.props} />
 			</div>
 		)
 	}

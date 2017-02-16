@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path')
 const session = require('express-session');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const webpack = require('webpack');
 
-const passportRoute = require('./passport_router.js')
+// const passportRoute = require('./passport_router.js')
 const videoRoute = require('./video_router.js')
 
 const config = require('../../webpack.config.js');
@@ -30,7 +30,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
-app.use('/api', passportRoute)
+// app.use('/api', passportRoute)
 app.use('/video', videoRoute)
 
 app.get("*", (req, res) => (

@@ -13,7 +13,6 @@ var cube_count,
   materials = [],
   xgrid = 26,
   ygrid = 26;
-
 function init() {
   container = document.getElementById("container")
   camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -66,7 +65,6 @@ function init() {
 
   //keep high res
   renderer.autoClear = false;
-  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   // postprocessing
   var renderModel = new THREE.RenderPass( scene, camera );
   var effectBloom = new THREE.BloomPass( 1.3 );
@@ -103,26 +101,18 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
   }
 }
 
-//mouse position
-function onDocumentMouseMove(event) {
-  mouseX = ( event.clientX - windowHalfX );
-  mouseY = ( event.clientY - windowHalfY ) * 0.3;
-}
 
 //animation loop
 function animate() {
   requestAnimationFrame( animate );
   render();
 }
-
 function render() {
   for (var i = 0; i < scene.children.length; i ++) {
     if(scene.children[i].type !== "DirectionalLight") {
       scene.children[i].scale.z = boost[i]/10 + 0.001
     }
   }
-  // camera.position.x += ( mouseX - camera.position.x ) * 0.05;
-  // camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
   camera.lookAt( scene.position );
   renderer.clear();
   composer.render();
