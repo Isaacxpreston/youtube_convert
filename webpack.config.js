@@ -34,7 +34,7 @@ var config = {
         },
       },
       {
-        test: /\.(jpg|png)$/,
+        test: /\.(jpg|png|gif)$/,
         loader: 'url-loader',
         options: {
           limit: 25000,

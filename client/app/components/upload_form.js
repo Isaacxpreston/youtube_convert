@@ -13,30 +13,35 @@ const styles = {
   percent: {
     color: "white",
     "fontFamily": "sans-serif",
-    "font-size": "2em",
-    "text-transform": "uppercase",
-    "margin-bottom": "25px"
+    "fontSize": "2em",
+    "textTransform": "uppercase",
+    "marginBottom": "25px"
   },
   input: {
     height: "40px",
-    "font-size": "1.2em",
-    "text-transform": "uppercase",
+    "fontSize": "1.2em",
+    "textTransform": "uppercase",
     border: "none",
     background: "rgba(0, 0, 0, 0)",
     color: "white",
     outline: "none"
   },
   button: {
-    "text-align": "left",
-    "padding-top": "7px",
-    "margin-left": "-5px",
+    "textAlign": "left",
+    "paddingTop": "7px",
+    "marginLeft": "-5px",
     height: "20px",
-    "font-size": "1.2em",
-    "text-transform": "uppercase",
+    "fontSize": "1.2em",
+    "textTransform": "uppercase",
     border: "none",
     background: "rgba(0, 0, 0, 0)",
     color: "white",
     outline: "none"
+  },
+  img: {
+    height: "24px",
+    width: "24px",
+    "paddingLeft": "10px"
   }
 }
 
