@@ -24,11 +24,11 @@ const styles = {
 
 const Landing = React.createClass({
   playDemo () {
-    this.props.dispatch(CONVERT_VIDEO("convertre"))
+    this.props.dispatch(CONVERT_VIDEO("converter"))
 	},
   
   playNSFWDemo () {
-    this.props.dispatch(CONVERT_VIDEO("converter"))
+    this.props.dispatch(CONVERT_VIDEO("convertre"))
 	},
 
 	render() {
