@@ -15,7 +15,7 @@ const styles = {
     "fontFamily": "sans-serif",
     "fontSize": "2em",
     "textTransform": "uppercase",
-    "marginBottom": "25px"
+    "marginBottom": "10px"
   },
   input: {
     height: "40px",

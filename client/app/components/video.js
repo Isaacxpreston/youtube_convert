@@ -13,8 +13,6 @@ const styles = {
 }
 
 const VideoComponent = React.createClass({
-  //production
-  //https://youtube-converter.herokuapp.com/
 	render () {
     return (
       <div>
