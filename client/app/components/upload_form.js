@@ -50,27 +50,20 @@ const UploadForm = React.createClass({
 	},
 
   componentDidMount () {
-    console.log(this.props)
-
     let dispatch = (m) => {
       this.props.dispatch(UPDATE_PERCENT(m.message))
     }
-
     this.pubnub = new PubNub({
       subscribeKey: "sub-c-6fa72432-f415-11e6-b0ac-0619f8945a4f",
       publishKey: "pub-c-6d1cc120-4d11-4db6-8d32-e617c064a066",
       secretKey: "sec-c-NTk2Y2JhZDAtMzc3Ni00OTQ2LTkxZDUtZGIxM2QzNmRjNmVh",
       ssl: true
     })
-
     this.pubnub.addListener({
       message: function(m) {
         dispatch(m)
-        // console.log(m.message, this.props)
-        // this.props.dispatch(UPDATE_PERCENT(m.message))
       }
     })
-
     this.pubnub.subscribe({
         channels: ["convert_percent"]
     })

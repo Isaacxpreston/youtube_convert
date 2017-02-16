@@ -2,10 +2,8 @@ const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
 const webpack = require('webpack');
-const videoRoute = require('./video_router.js')
+const converterRoute = require('./converter.js')
 const config = require('../../webpack.config.js');
-
-// APP SETUP & MIDDLEWARE
 const app = express();
 const compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -14,7 +12,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 app.use(require('webpack-hot-middleware')(compiler));
 app.use(bodyParser.json());
-app.use('/video', videoRoute)
+app.use('/api', converterRoute)
 
 app.get("*", (req, res) => (
   res.sendFile(path.resolve(__dirname, '../../client/app', 'index.html'))
