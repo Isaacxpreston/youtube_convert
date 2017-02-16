@@ -3,45 +3,48 @@ import PubNub from 'pubnub'
 import {convertVideo} from '../utils/convert_video.js'
 import {CONVERT_VIDEO, UPDATE_PERCENT} from '../actions/actions.js'
 
-// const pubnub = new PubNub({
-//     subscribeKey: "sub-c-6fa72432-f415-11e6-b0ac-0619f8945a4f",
-//     publishKey: "pub-c-6d1cc120-4d11-4db6-8d32-e617c064a066",
-//     secretKey: "sec-c-NTk2Y2JhZDAtMzc3Ni00OTQ2LTkxZDUtZGIxM2QzNmRjNmVh",
-//     ssl: true
-// })
-
-// pubnub.addListener({
-//   message: function(m) {
-//     console.log(m.message)
-//     // this.props.dispatch(UPDATE_PERCENT(m.message))
-//   }
-// })
-
-// pubnub.subscribe({
-//     channels: ["convert_percent"]
-// })
-
 const styles = {
   div: {
     position: "absolute",
     "zIndex": 2, 
-    top: 0,
-    left: 0,
-    right: 0,
-    width: "400px",
-    height: "300px"
+    bottom: 10,
+    left: 20,
   },
   percent: {
-    color: "white"
+    color: "white",
+    "fontFamily": "sans-serif",
+    "font-size": "2em",
+    "text-transform": "uppercase",
+    "margin-bottom": "25px"
+  },
+  input: {
+    height: "40px",
+    "font-size": "1.2em",
+    "text-transform": "uppercase",
+    border: "none",
+    background: "rgba(0, 0, 0, 0)",
+    color: "white",
+    outline: "none"
+  },
+  button: {
+    "text-align": "left",
+    "padding-top": "7px",
+    "margin-left": "-5px",
+    height: "20px",
+    "font-size": "1.2em",
+    "text-transform": "uppercase",
+    border: "none",
+    background: "rgba(0, 0, 0, 0)",
+    color: "white",
+    outline: "none"
   }
 }
 
 const UploadForm = React.createClass({
   convertVideo (e) {
     e.preventDefault()
-    if (this.refs.id.value !== "") {
+    if (this.refs.id.value !== "" && this.refs.originalUrl.value !== "") {
       convertVideo(this.refs.originalUrl.value, this.refs.id.value).then((path) => {
-        console.log("server res", path)
         this.props.dispatch(CONVERT_VIDEO(path))
       })
     }
@@ -70,20 +73,27 @@ const UploadForm = React.createClass({
   },
 
 	render() {
-    return (
-      <div style={styles.div}>
-        <div style={styles.percent}>
-          {this.props.conversionPercent}
+    if (this.props.conversionPercent === null || this.props.conversionPercent === " ") {
+      return (
+        <div style={styles.div}>
+          <form onSubmit={this.convertVideo}>
+            <input style={styles.input} type="text" placeholder="youtube url" ref="originalUrl"></input>
+            <br />
+            <input style={styles.input} type="text" maxLength="10" placeholder="display text" ref="id"></input>
+            <br />
+            <button style={styles.button}>convert</button>
+          </form>
         </div>
-        <form onSubmit={this.convertVideo}>
-          <input type="text" placeholder="youtube url" ref="originalUrl"></input>
-          <br />
-          <input type="text" maxLength="10" placeholder="display text" ref="id"></input>
-          <br />
-          <button>convert</button>
-        </form>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div style={styles.div}>
+          <div style={styles.percent}>
+            {this.props.conversionPercent}
+          </div>
+        </div>
+      )
+    }
 	}
 })
 

@@ -12,11 +12,11 @@ pubnub = new PubNub({
     subscribeKey : 'sub-c-6fa72432-f415-11e6-b0ac-0619f8945a4f'
 })
 
-router.post('/convert', function(req, res) {
-  pubnub.publish(
+let pubStatus = (message) => {
+    pubnub.publish(
     {
       channel : "convert_percent",
-      message : "starting conversion"
+      message
     },
     (status, response) => {
       if (status.error !== false) {
@@ -24,6 +24,10 @@ router.post('/convert', function(req, res) {
       }
     }
   )
+}
+
+router.post('/convert', function(req, res) {
+  pubStatus("starting conversion")
   let upload = s3Stream.upload({
   "Bucket": "isaacxpreston",
   "Key": req.body.id + ".mp4",
@@ -49,68 +53,30 @@ router.post('/convert', function(req, res) {
       currentPercent = ((dataRead / totalSize) * 100).toFixed()
       if(prevPercent !== currentPercent) {
         prevPercent = currentPercent
-        pubnub.publish(
-          {
-            channel : "convert_percent",
-            message : "converting: " +  prevPercent + "%"
-          },
-          (status, response) => {
-            if (status.error !== false) {
-              console.log("pubnub error", status)
-            }
-          }
-        )
+        pubStatus("converting " +  prevPercent + "%")
       }
       if(currentPercent > 99) {
-        pubnub.publish(
-          {
-            channel : "convert_percent",
-            message : "successfully converted, uploading to s3"
-          },
-          (status, response) => {
-            if (status.error !== false) {
-              console.log("pubnub error", status)
-            }
-          }
-        )
+        pubStatus("uploading")
       }
     });
   })
-  .on('error', (err) => {
-    console.log("error in ytdl", err);
-    res.send(err)
+  .on('error', (error) => {
+    console.log("error in ytdl", error);
+    pubStatus("error")
+    res.send(error)
   })
   .pipe(upload)
   .on('error', function (error) {
     console.log("error in s3 upload", error);
+    pubStatus("error")
     res.send(error)
   })
   .on('uploaded', function (details) {
-    pubnub.publish(
-      {
-        channel : "convert_percent",
-        message : "s3 uploaded!"
-      },
-      (status, response) => {
-        if (status.error !== false) {
-          console.log("pubnub error", status)
-        }
-      }
-    )
+    pubStatus("uploaded!")
     setTimeout(() => {
-      pubnub.publish(
-        {
-          channel : "convert_percent",
-          message : " "
-        },
-        (status, response) => {
-          if (status.error !== false) {
-            console.log("pubnub error", status)
-          }
-        }
-      )
+      pubStatus(" ")
     }, 2000)
-    console.log("s3 uploaded!", details.Location);
+    console.log("uploaded!", details.Location);
     res.send(req.body.id)
   });
 });
